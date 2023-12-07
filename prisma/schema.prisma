@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Rodada {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  campeonato String
+  rodada     Int
+  status     String
+  temporada  String
+  timeEight  String
+  timeFive   String
+  timeFour   String
+  timeOne    String
+  timeSeven  String
+  timeSix    String
+  timeThree  String
+  timeTwo    String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("rodadas")
+}
+
+model Ticket {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  user       String
+  rodada     Int
+  rodadaId   String?  @db.ObjectId
+  temporada  String?
+  timeEight  Int
+  timeFive   Int
+  timeFour   Int
+  timeOne    Int
+  timeSeven  Int
+  timeSix    Int
+  timeThree  Int
+  timeTwo    Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("tickets")
+
+}
